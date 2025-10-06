@@ -1,0 +1,108 @@
+# bst.py
+
+class Nodo:
+    def __init__(self, palabra, traduccion):
+        self.palabra = palabra
+        self.traduccion = traduccion
+        self.izq = None
+        self.der = None
+
+class DiccionarioBST:
+    def __init__(self):
+        self.raiz = None
+
+    # Inserción de palabra
+    def insertar_par(self, palabra, traduccion):
+        palabra = palabra.lower()  # Normaliza a minúsculas
+        self.raiz = self._insertar(self.raiz, palabra, traduccion)
+
+    def _insertar(self, nodo, palabra, traduccion):
+        if nodo is None:
+            return Nodo(palabra, traduccion)
+        if palabra < nodo.palabra:
+            nodo.izq = self._insertar(nodo.izq, palabra, traduccion)
+        elif palabra > nodo.palabra:
+            nodo.der = self._insertar(nodo.der, palabra, traduccion)
+        else:
+            nodo.traduccion = traduccion  # Reemplaza si existe
+        return nodo
+
+    # Búsqueda por palabra exacta
+    def buscar_traduccion(self, palabra):
+        palabra = palabra.lower()
+        nodo = self._buscar(self.raiz, palabra)
+        return nodo.traduccion if nodo else None
+
+    def _buscar(self, nodo, palabra):
+        if nodo is None:
+            return None
+        if palabra == nodo.palabra:
+            return nodo
+        elif palabra < nodo.palabra:
+            return self._buscar(nodo.izq, palabra)
+        else:
+            return self._buscar(nodo.der, palabra)
+
+    # Eliminación de palabra
+    def eliminar_palabra(self, palabra):
+        palabra = palabra.lower()
+        self.raiz = self._eliminar(self.raiz, palabra)
+
+    def _eliminar(self, nodo, palabra):
+        if nodo is None:
+            return None
+        if palabra < nodo.palabra:
+            nodo.izq = self._eliminar(nodo.izq, palabra)
+        elif palabra > nodo.palabra:
+            nodo.der = self._eliminar(nodo.der, palabra)
+        else:
+            # Nodo con uno o ningún hijo
+            if nodo.izq is None:
+                return nodo.der
+            elif nodo.der is None:
+                return nodo.izq
+            # Nodo con dos hijos
+            sucesor = self._minimo(nodo.der)
+            nodo.palabra = sucesor.palabra
+            nodo.traduccion = sucesor.traduccion
+            nodo.der = self._eliminar(nodo.der, sucesor.palabra)
+        return nodo
+
+    def _minimo(self, nodo):
+        while nodo.izq is not None:
+            nodo = nodo.izq
+        return nodo
+
+    # Recorridos
+    def inorder(self):
+        res = []
+        self._inorder(self.raiz, res)
+        return res
+
+    def _inorder(self, nodo, res):
+        if nodo:
+            self._inorder(nodo.izq, res)
+            res.append((nodo.palabra, nodo.traduccion))
+            self._inorder(nodo.der, res)
+
+    def preorder(self):
+        res = []
+        self._preorder(self.raiz, res)
+        return res
+
+    def _preorder(self, nodo, res):
+        if nodo:
+            res.append((nodo.palabra, nodo.traduccion))
+            self._preorder(nodo.izq, res)
+            self._preorder(nodo.der, res)
+
+    def postorder(self):
+        res = []
+        self._postorder(self.raiz, res)
+        return res
+
+    def _postorder(self, nodo, res):
+        if nodo:
+            self._postorder(nodo.izq, res)
+            self._postorder(nodo.der, res)
+            res.append((nodo.palabra, nodo.traduccion))

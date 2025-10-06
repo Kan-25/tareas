@@ -1,0 +1,30 @@
+adios:goodbye
+ahora:now
+bien:good
+casa:house
+computadora:computer
+dar:give
+detras:behind
+dinero:money
+entonces:then
+entre:between
+espada:sword
+espalda:back
+gracias:thank you
+hacer:make
+hola:hello
+jugador:player
+lejos:far
+libro:book
+mirar:look
+mundo:world
+nuestro:our
+numero:number
+perro:dog
+persona:person
+por favor:please
+tambien:also
+tiempo:time
+tomar:take
+usar:use
+ver:see

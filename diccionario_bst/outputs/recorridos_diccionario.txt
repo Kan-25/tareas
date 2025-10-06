@@ -1,0 +1,10 @@
+=== RECORRIDOS DEL ÁRBOL BST ===
+
+--- Recorrido IN-ORDER ---
+adios ahora bien casa computadora dar detras dinero entonces entre espada espalda gracias hacer hola jugador lejos libro mirar mundo nuestro numero perro persona por favor tambien tiempo tomar usar ver
+
+--- Recorrido PRE-ORDER ---
+hola gracias adios bien ahora dar computadora casa entonces detras dinero entre espalda espada hacer mundo mirar lejos jugador libro por favor perro nuestro numero persona tomar tiempo tambien usar ver
+
+--- Recorrido POST-ORDER ---
+ahora casa computadora dinero detras espada espalda entre entonces dar bien adios hacer gracias jugador libro lejos mirar numero nuestro persona perro tambien tiempo ver usar tomar por favor mundo hola
